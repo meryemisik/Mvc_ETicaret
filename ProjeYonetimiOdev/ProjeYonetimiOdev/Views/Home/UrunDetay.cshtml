@@ -1,0 +1,119 @@
+﻿@{
+    ViewBag.Title = "- Aldın Aldın";
+    Layout = "~/Views/Shared/SiteLayout.cshtml";
+}
+
+@model ProjeYonetimiOdev.Models.Urun
+
+<script src="~/Scripts/jquery-3.6.0.js"></script>
+<script>
+    $(document).ready(function myfunction() {
+        $(".sepeteAt").click(function UrunSİl() {
+            var uid = $(this).attr("name");
+            $.ajax({
+                type: "get",
+                url: "/Home/SepetUrunAdetDusur",
+                data: { id: uid },
+                success: function myfunction() {
+                    $.ajax({
+                        type: "get",
+                        url: "/Home/MiniSepetWidget",
+                        success: function myfunction(veri) {
+                            $(".mini-cart-wrap").html('');
+                            $(".mini-cart-wrap").html(veri);
+                        },
+                        error: function myfunction() {
+                            alert("hata");
+                        }
+                    })
+                },
+                error: function myfunction() {
+                    alert("hata");
+                }
+            });
+        });
+    });
+</script>
+<div class="product-section section mt-90 mb-90">
+    <div class="container">
+        <div class="row mb-90">
+            <div class="col-lg-6 col-12 mb-50">
+                <div class="single-product-image thumb-right">
+                    <div class="tab-content">
+                        @foreach (var item in Model.Resim)
+                        {
+                            <div id="single-image-1" class="tab-pane fade show active big-image-slider">
+                                <div class="big-image">
+                                    <img src="@item.BuyukYol" alt="@Model.Adi">
+                                    <a href="#" class="big-image-popup">
+                                        <i class="fa fa-search-plus"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                    <div class="thumb-image-slider nav" data-vertical="true">
+                        @foreach (var item in Model.Resim)
+                        {
+                            <a class="thumb-image active" data-toggle="tab" href="#single-image-1">
+                                <img src="@item.OrtaYol" alt="@Model.Adi">
+                            </a>
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-12 mb-50">
+                <div class="single-product-content">
+                    <div class="head-content">
+                        <div class="category-title">
+                            <a href="#" class="cat">@Model.Kategoriler.Adi</a>
+                            <h5 class="title">@Model.Adi</h5>
+                        </div>
+                        <h5 class="price">@Model.SatisFiyati</h5>
+                    </div>
+                    <div class="single-product-description">
+                        <div class="desc">
+                            <p>@Model.Aciklama</p>
+                        </div>
+                        <div class="quantity-colors">
+                            <div class="quantity">
+                                <h5>Adet</h5>
+                                <div class="pro-qty"><input type="text" name="Adet" value="1"></div>
+                            </div>
+                            @foreach (var tip in ViewBag.Ozellikler)
+                            {
+                                <div class="colors">
+                                    
+                                    <select class="nice-select">
+                                        <option>@tip.Key</option>
+                                        @foreach (var deger in tip.Value)
+                                        {
+                                            <option>@deger.Adi</option>
+                                        }
+                                    </select>
+                                </div>
+                            }
+                        </div>
+                        <div class="actions">
+                            <a class="add-to-cart sepeteAt" name="@Model.ID"><i class="ti-shopping-cart"></i><span>SEPETE EKLE</span></a>
+                            <div class="wishlist-compare">
+                                <a href="#" data-tooltip="Compare"><i class="ti-control-shuffle"></i></a>
+                                <a href="#" data-tooltip="Wishlist"><i class="ti-heart"></i></a>
+                            </div>
+                        </div>
+
+                        <div class="share">
+                            <h5>Share: </h5>
+                            <a href="#"><i class="fa fa-facebook"></i></a>
+                            <a href="#"><i class="fa fa-twitter"></i></a>
+                            <a href="#"><i class="fa fa-instagram"></i></a>
+                            <a href="#"><i class="fa fa-google-plus"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>

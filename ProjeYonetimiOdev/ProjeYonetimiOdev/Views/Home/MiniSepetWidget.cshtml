@@ -1,0 +1,94 @@
+﻿@model ProjeYonetimiOdev.App_Class.Sepet
+<script src="~/Scripts/jquery-3.6.0.js"></script>
+<script>
+    $(document).ready(function myfunction() {
+        $(".urunSil").click(function UrunSİl() {
+            var uid = $(this).attr("name");
+            $.ajax({
+                type: "get",
+                url: "/Home/SepetUrunAdetDusur",
+                data: { id: uid },
+                success: function myfunction() {
+                    $.ajax({
+                        type: "get",
+                        url: "/Home/MiniSepetWidget",
+                        success: function myfunction(veri) {
+                            $(".mini-cart-wrap").html('');
+                            $(".mini-cart-wrap").html(veri);
+                        },
+                        error: function myfunction() {
+                            alert("hata");
+                        }
+                    })
+                },
+                error: function myfunction() {
+                    alert("hata");
+                }
+            });
+        });
+    });
+</script>
+<div class="mini-cart-wrap">
+    <div class="mini-cart-top">
+        <button class="close-cart">Close Cart<i class="icofont icofont-close"></i></button>
+    </div>
+    <ul class="mini-cart-products">
+        @if (Model != null)
+        {
+            foreach (var item in Model.Urunler)
+            {
+                <li>
+                    <a class="image">
+                        @*@if (item.Urun.Resim != null)
+                            {
+                                <img src="@item.Urun.Resim.FirstOrDefault(x=>x.Varsayilan==true).OrtaYol" alt="Product">
+                            }*@
+                    </a>
+                    <div class="content">
+                        <a href="/Home/UrunDetay/@item.Urun.Adi" class="title">
+                            @item.Urun.Adi
+                        </a>
+                        <span class="price">
+                            Tutar: @item.Tutar.ToString("C2")
+                        </span>
+                        <span class="qty">Adet: @item.Adet</span>
+                    </div>
+                    <a class="urunSil" name="@item.Urun.ID"><i class="fa fa-trash-o"></i></a>
+                </li>
+            }
+        }
+    </ul>
+    <div class="mini-cart-bottom">
+        <h4 class="sub-total">
+            Toplam Tutar:
+            <span>
+                @if (Model != null)
+                {
+                    @Model.ToplamTutar.ToString("C2")
+                }
+                else
+                {
+                    <span> 0 tl</span>
+                }
+            </span>
+        </h4>
+        <h4 class="">
+            <span>
+                @if (Model != null)
+                {
+                    <span>
+                        Sepette toplam
+                        @Model.Urunler.Sum(x => x.Adet) adet ürün bulunmaktadır.
+                    </span>
+                }
+                else
+                {
+                    <span>Sepette toplamda 0 adet ürün bulunmaktadır</span>
+                }
+            </span>
+        </h4>
+        <div class="button">
+            <a href="checkout.html">CHECK OUT</a>
+        </div>
+    </div>
+</div>

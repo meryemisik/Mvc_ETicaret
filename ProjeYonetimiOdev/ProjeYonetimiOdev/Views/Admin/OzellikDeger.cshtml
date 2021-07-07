@@ -1,0 +1,55 @@
+﻿
+@{
+    ViewBag.Title = "Özellik Değerleri";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+@model IEnumerable<ProjeYonetimiOdev.Models.OzellikDetay>
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body style="margin:8px;">
+
+    <a href="/Admin/OzellikDegerEkle"><button type="button" class="btn bg-cyan" style="margin:5px 5px 5px 0px;">ÖZELLİK DEĞERİ EKLE</button></a>
+    <table class="table table-hover">
+        <thead class="bg-cyan">
+            <tr>
+                <th >Özellik Değer Adı</th>
+                <th >Açıklama</th>
+                <th >Özellik Tipi</th>
+                <th >Sil</th>
+                <th style="text-align:center;" >Güncelle</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var deger in Model)
+            {
+            <tr>
+                <td>@deger.Adi</td>
+                <td>@deger.Aciklama</td>
+                @if (deger.Ozellikler != null)
+                {
+                    <td>@deger.Ozellikler.Adi</td>
+                }
+
+                <td>
+                    <a href="/Admin/OzellikDegerSil/@deger.ID" style="color:red;"><i class="fas fa-trash-alt"></i></a>
+                </td>
+                <td style="text-align:center;">
+
+                    <a href="/Admin/OzellikDegerGuncelle/@deger.ID" style="color:#17a2b8;"><i class="fas fa-edit"></i></a>
+                </td>
+
+                
+            </tr>
+            }
+
+
+        </tbody>
+    </table>
+</body>
+</html>
+
+
+

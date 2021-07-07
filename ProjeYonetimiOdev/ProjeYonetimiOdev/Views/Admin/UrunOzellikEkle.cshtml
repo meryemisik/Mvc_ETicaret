@@ -1,0 +1,64 @@
+﻿
+@{
+    ViewBag.Title = "Ürün Özellik Ekle";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+@section head{
+
+    <script src="~/Scripts/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function myfunction() {
+            $("#urun").change(function myfunction() {
+                var kategoriId = $(this).find("option:selected").attr("title");
+
+
+                $.ajax({
+                    type: "GET",
+                    url: "/Admin/UrunOzellikTipeGore",
+                    data: { ktgId: kategoriId },
+                    success: function myfunction(veri) {
+                        $("#tip").html('');
+                        $("#tip").append(veri);
+                    },
+                    error: function myfunction() {
+                        alert("hata");
+                    }
+                });
+            })
+           
+        })
+    </script>
+}
+@model IEnumerable<ProjeYonetimiOdev.Models.Urun>
+<div class="card card-dark" style="margin:8px;">
+    <div class="card-header bg-cyan">
+        <h3 class="card-title">ÜRÜN ÖZELLİK EKLE</h3>
+    </div>
+    <form role="form" action="/Admin/UrunOzellikEkle" method="post">
+        <div class="card-body">
+            <div class="form-group">
+                <label>Ürün :</label>
+                <div>
+                    <select id="urun" class="form-control" name="UrunID">
+
+                        <option>Ürün seçiniz</option>
+                        @foreach (var urun in Model)
+                        {
+                            <option value="@urun.ID " title="@urun.KategoriID">@urun.Adi</option>
+                        }
+                    </select>
+                </div>
+            </div>
+           <div id="tip">
+
+           </div>
+            <div id="deger">
+
+            </div>
+            <div class="card-footer">
+                <button type="submit" class="btn bg-cyan">KAYDET</button>
+            </div>
+
+        </div>
+    </form>
+</div>

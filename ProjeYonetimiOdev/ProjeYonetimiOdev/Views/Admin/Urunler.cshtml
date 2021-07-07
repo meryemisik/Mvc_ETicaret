@@ -1,0 +1,74 @@
+﻿@{
+    ViewBag.Title = "Urunler";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+
+}
+@model IEnumerable<ProjeYonetimiOdev.Models.Urun>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body style="margin:8px;">
+
+    <a href="/Admin/UrunEkle"><button type="button" class="btn bg-cyan" style="margin: 5px 5px 5px 0px;">ÜRÜN EKLE</button></a>
+    <table class="table table-hover ">
+        <thead class="bg-cyan">
+            <tr >
+                <th scope="col">Ürün Adı</th>
+                <th scope="col">Açıklama</th>
+                <th scope="col">Alış Fiyat</th>
+                <th scope="col">Satış Fiyat</th>
+                <th scope="col">Kategori</th>
+                <!--<th scope="col">-->@*Eklenme Tarihi*@<!--</th>-->
+                <th scope="col">Marka Adı</th>
+                <th>Resim Ekle</th>
+                <th scope="col">Sil</th>
+                <th scope="col">Düzenle</th>
+            </tr>
+        </thead>
+        <tbody style="text-align:center;" >
+            @foreach (var urun in Model)
+            {
+            <tr>
+                <td>@urun.Adi</td>
+                <td style="width:30%; text-align:justify;">
+                    @urun.Aciklama
+                </td>
+                <td>@urun.AlisFiyati <span style="font-weight:bold;">₺</span></td>
+                <td>@urun.SatisFiyati <span style="font-weight:bold;">₺</span></td>
+
+                @if (urun.Kategoriler != null)
+                {
+                    <td> @urun.Kategoriler.Adi</td>
+                }
+
+                @*<td>
+            <div class="col-2">
+               @urun.EklenmeTarihi
+            </div>@if  (){}
+        </td>*@
+
+                @if (urun.Markalar != null)
+                {
+                    <td> @urun.Markalar.Adi</td>
+                }
+                <td><a href="/Admin/UrunResimEkle/@urun.ID" style="color:green;"><i class="fas fa-plus-circle"></i></a></td>
+                <td>
+                    <a href="#" style="color:red;"><i class="fas fa-trash-alt"></i></a>
+                </td>
+                <td>
+
+                    <a href="#" style="color:#17a2b8;"><i class="fas fa-edit"></i></a>
+                </td>
+
+            </tr>
+            }
+
+
+        </tbody>
+    </table>
+</body>
+</html>
+

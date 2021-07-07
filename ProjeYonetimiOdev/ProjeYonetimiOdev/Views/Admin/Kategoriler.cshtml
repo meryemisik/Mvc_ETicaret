@@ -1,0 +1,48 @@
+﻿
+@{
+    ViewBag.Title = "Kategoriler";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+@model IEnumerable<ProjeYonetimiOdev.Models.Kategoriler>
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body style="margin:8px;">
+
+    <a href="/Admin/KategoriEkle"><button type="button" class="btn bg-cyan" style="margin:5px 5px 5px 0px;">KATEGORİ EKLE</button></a>
+    <table class="table table-hover" style="text-align:center;">
+        <thead class="bg-cyan">
+            <tr>
+                <th scope="col">Kategori Adı</th>
+                <th scope="col">Açıklama</th>
+                <th scope="col">Sil</th>
+                <th scope="col">Güncelle</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var kategori in Model)
+            {
+            <tr>
+                <td>@kategori.Adi</td>
+                <td style="width:40%;">@kategori.Aciklama</td>
+
+
+                <td>
+                    <a href="#" style="color:red;"><i class="fas fa-trash-alt"></i></a>
+                </td>
+                <td>
+
+                    <a href="#" style="color:#17a2b8;"><i class="fas fa-edit"></i></a>
+                </td>
+            </tr>
+            }
+
+
+        </tbody>
+    </table>
+</body>
+</html>
+
+

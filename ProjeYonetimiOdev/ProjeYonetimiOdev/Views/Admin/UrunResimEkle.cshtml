@@ -1,0 +1,35 @@
+﻿
+@{
+    ViewBag.Title = "Ürün Resim Ekle";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<div class="card card-dark" style="margin:5px;">
+    <div class="card-header bg-cyan">
+        <h3 class="card-title">Ürün Resim Ekle</h3>
+    </div>
+    <form class="form-horizontal" method="post" action="/Admin/UrunResimEkle" enctype="multipart/form-data">
+        <input type="hidden" name="urnId" value="@Model" />
+        <div class="card-body">
+            
+            
+            <div class="form-group row">
+                <label for="" class="col-sm-2 col-form-label">Ürün Resmi : </label>
+                <div class="col-sm-10">
+                    <div class="input-group">
+                        <div class="custom-file">
+                            <input type="file" id="" name="fileUpload"><br><br>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- /.card-body -->
+        <div class="card-footer">
+            <button type="submit" class="btn bg-cyan">Kaydet</button>
+        </div>
+        <!-- /.card-footer -->
+    </form>
+</div>

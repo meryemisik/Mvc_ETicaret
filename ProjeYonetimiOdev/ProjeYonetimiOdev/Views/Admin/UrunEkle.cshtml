@@ -1,0 +1,64 @@
+﻿
+@{
+    ViewBag.Title = "Ürün Ekle";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<div class="card card-dark" style="margin:8px;">
+    <div class="card-header bg-cyan">
+        <h3 class="card-title">ÜRÜN EKLE</h3>
+    </div>
+    <form role="form" action="/Admin/UrunEkle" method="post">
+        <div class="card-body">
+            <div class="form-group">
+                <label>Ürün Adı :</label>
+                <input type="text" autocomplete="off" class="form-control" name="Adi" placeholder="Ürün Adı" />
+            </div>
+            <div class="form-group">
+                <label>Açıklama :</label>
+                <input type="text" autocomplete="off" class="form-control" name="Aciklama" placeholder="Ürün Açıklaması" />
+            </div>
+            <div class="form-group">
+                <label>Alış Fiyatı :</label>
+                <input type="number" autocomplete="off" class="form-control" name="AlisFiyati" placeholder="Ürün Alış Fiyatı" />
+            </div>
+            <div class="form-group">
+                <label>Satış Fiyatı :</label>
+                <input type="number" autocomplete="off" class="form-control" name="SatisFiyati" placeholder="Ürün Satis Fiyatı" />
+            </div>
+            <div class="form-group">
+                <label>Kategori Adı :</label>
+
+                <div>
+                    <select class="form-control" name="KategoriID" >
+
+                        <option>Kategori seçiniz</option>
+                        @foreach (var kategori in ViewBag.Kategoriler)
+                        {
+                            <option value="@kategori.ID">@kategori.Adi</option>
+                        }
+                     </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Marka Adı :</label>
+                <div>
+                    <select class="form-control" name="MarkaID">
+                        <option>Marka seçiniz</option>
+                        @foreach (var marka in ViewBag.Markalar)
+                        {
+                            <option value="@marka.ID">@marka.Adi</option>
+                        }
+                    </select>
+                </div>
+                
+            </div>
+            <div class="card-footer">
+                <button type="submit" class="btn bg-cyan">KAYDET</button>
+            </div>
+
+        </div>
+    </form>
+</div>
+
+

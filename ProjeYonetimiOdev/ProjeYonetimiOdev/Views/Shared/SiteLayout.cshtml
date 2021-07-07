@@ -1,0 +1,243 @@
+﻿@{
+    Layout = null;
+}
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/x-icon" href="~/Content/UI/assets/images/favicon.ico">
+    <link href="~/Content/UI/assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/Content/UI/assets/css/icon-font.min.css">
+    <link rel="stylesheet" href="~/Content/UI/assets/css/plugins.css">
+    <link rel="stylesheet" href="~/Content/UI/assets/css/style.css">
+    <script src="~/Content/UI/assets/js/vendor/modernizr-2.8.3.min.js"></script>
+</head>
+<body>
+    <div class="header-section section">
+        <div class="header-top header-top-one header-top-border pt-10 pb-10">
+            <div class="container">
+                <div class="row align-items-center justify-content-between">
+                    <div class="col order-12 order-xs-12 order-lg-2 mt-10 mb-10">
+                        <div class="header-advance-search">
+                            <form action="#">
+                                <div class="input"><input type="text" placeholder="ARA"></div>
+                                <div class="submit"><button><i class="icofont icofont-search-alt-1"></i></button></div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col order-2 order-xs-2 order-lg-12 mt-10 mb-10">
+                        <div class="header-account-links">
+                            <a href="/Kullanici/Hesabim"><i class="icofont icofont-user-alt-7"></i> <span>HESABIM</span></a>
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <a href="/Kullanici/CikisYap"><i class="icofont icofont-login d-none"></i> <span>ÇIKIŞ YAP</span></a>
+                            }
+                            else
+                            {
+                                <a href="/Kullanici/GirisYap"><i class="icofont icofont-login d-none"></i> <span>GİRİŞ YAP</span></a>
+                            }
+                            <a href="/Kullanici/KayitOl"><i class="icofont icofont-login d-none"></i> <span>KAYIT OL</span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="header-bottom header-bottom-one header-sticky">
+            <div class="container">
+                <div class="row align-items-center justify-content-between">
+
+                    <div class="col mt-15 mb-15">
+                        <div class="header-logo">
+                            <a href="index.html">
+                                ALDIN ALDIN
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="col order-12 order-lg-2 order-xl-2 d-none d-lg-block">
+                        <div class="main-menu">
+                            <nav>
+                                <ul>
+                                    <li class="active"><a href="index.html">Anasayfa</a></li>
+                                    <li class="menu-item-has-children">
+                                        <a href="shop-grid.html">Sayfalar</a>
+                                        <ul class="sub-menu">
+                                            <li class="menu-item-has-children">
+                                                <a href="shop-grid.html">Hakkımızda</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="/Home/Iletisim">İletişim</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                    <div class="col order-2 order-lg-12 order-xl-12">
+                        <div class="header-shop-links">
+                            <a href="cart.html" class="header-cart"><i class="ti-shopping-cart"></i> <span class="number">3</span></a>
+                        </div>
+                    </div>
+                    <div class="mobile-menu order-12 d-block d-lg-none col"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @{
+        Html.RenderAction("MiniSepetWidget", "Home");
+    }
+    <div class="cart-overlay"></div>
+    @{
+        Html.RenderAction("KategoriList", "Home");
+    }
+    
+  
+    @RenderBody()
+   
+    <div class="banner-section section mb-60">
+        <div class="container">
+            <div class="row">
+
+                <!-- Banner -->
+                <div class="col-md-4 col-12 mb-30">
+                    <div class="banner"><a href="#"><img src="assets/images/banner/banner-4.jpg" alt="Banner"></a></div>
+                </div>
+
+                <!-- Banner -->
+                <div class="col-md-4 col-12 mb-30">
+                    <div class="banner"><a href="#"><img src="assets/images/banner/banner-5.jpg" alt="Banner"></a></div>
+                </div>
+
+                <!-- Banner -->
+                <div class="col-md-4 col-12 mb-30">
+                    <div class="banner"><a href="#"><img src="assets/images/banner/banner-6.jpg" alt="Banner"></a></div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    @{
+        Html.RenderAction("Markalar", "Home");
+    }
+    <div class="subscribe-section section bg-gray pt-55 pb-55">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 col-12 mb-15 mt-15">
+                    <div class="subscribe-content">
+                        <h2>SUBSCRIBE <span>OUR NEWSLETTER</span></h2>
+                        <h2><span>TO GET LATEST</span> PRODUCT UPDATE</h2>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-12 mb-15 mt-15">
+                    <form class="subscribe-form" action="#">
+                        <input type="email" autocomplete="off" placeholder="Enter your email here" />
+                        <button>subscribe</button>
+                    </form>
+                    <div class="mailchimp-alerts text-centre">
+                        <div class="mailchimp-submitting"></div>
+                        <div class="mailchimp-success"></div>
+                        <div class="mailchimp-error"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer-section section bg-ivory">
+        <div class="footer-top-section section pt-90 pb-50">
+            <div class="container">
+                <div class="row">
+                    <div class="col mb-90">
+                        <div class="footer-widget text-center">
+                            <div class="footer-logo">
+                                <img src="assets/images/logo.png" alt="E&E - Electronics eCommerce Bootstrap4 HTML Template">
+                                <img class="theme-dark" src="assets/images/logo-light.png" alt="E&E - Electronics eCommerce Bootstrap4 HTML Template">
+                            </div>
+                            <p>Electronics product actual teachings of  he great explorer of the truth, the malder of human happiness. No one rejects</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 col-12 mb-40">
+                        <div class="footer-widget">
+
+                            <h4 class="widget-title">CONTACT INFO</h4>
+
+                            <p class="contact-info">
+                                <span>Address</span>
+                                You address will be here <br>
+                                Lorem Ipsum text
+                            </p>
+                            <p class="contact-info">
+                                <span>Phone</span>
+                                <a href="tel:01234567890">01234 567 890</a>
+                                <a href="tel:01234567891">01234 567 891</a>
+                            </p>
+                            <p class="contact-info">
+                                <span>Web</span>
+                                <a href="mailto:info@example.com">info@example.com</a>
+                                <a href="#">www.example.com</a>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-12 mb-40">
+                        <div class="footer-widget">
+                            <h4 class="widget-title">CUSTOMER CARE</h4>
+                            <ul class="link-widget">
+                                <li><a href="#">About us</a></li>
+                                <li><a href="#">Features</a></li>
+                                <li><a href="#">My Account</a></li>
+                                <li><a href="#">Cart</a></li>
+                                <li><a href="#">Checkout</a></li>
+                                <li><a href="#">Wishlist</a></li>
+                                <li><a href="#">blog</a></li>
+                                <li><a href="#">Contact</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-12 mb-40">
+                        <div class="footer-widget">
+                            <h4 class="widget-title">INFORMATION</h4>
+                            <ul class="link-widget">
+                                <li><a href="#">Track your order</a></li>
+                                <li><a href="#">Locate Store</a></li>
+                                <li><a href="#">Online Support</a></li>
+                                <li><a href="#">Terms & Conditions</a></li>
+                                <li><a href="#">Payment</a></li>
+                                <li><a href="#">Shipping & Returns</a></li>
+                                <li><a href="#">Gift coupon</a></li>
+                                <li><a href="#">Special coupon</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-12 mb-40">
+                        <div class="footer-widget">
+
+                            <h4 class="widget-title">LATEST TWEET</h4>
+                            <div class="footer-tweet"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom-section section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 col-12">
+                        <div class="footer-copyright"><p>&copy; Copyright, 2018 All Rights Reserved by <a href="https://freethemescloud.com/">Free themes Cloud</a></p></div>
+                    </div>
+                    <div class="col-lg-6 col-12">
+                        <div class="footer-payments-image"><img src="assets/images/payment-support.png" alt="Payment Support Image"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="~/Content/UI/assets/js/vendor/jquery-1.12.4.min.js"></script>
+    <script src="~/Content/UI/assets/js/popper.min.js"></script>
+    <script src="~/Content/UI/assets/js/bootstrap.min.js"></script>
+    <script src="~/Content/UI/assets/js/plugins.js"></script>
+    <script src="~/Content/UI/assets/js/main.js"></script>
+</body>
+</html>

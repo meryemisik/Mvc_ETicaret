@@ -1,0 +1,74 @@
+﻿@model IEnumerable<ProjeYonetimiOdev.Models.Urun>
+
+<script src="~/Scripts/jquery-3.6.0.js"></script>
+<script>
+    $(document).ready(function myfunction() {
+        $(".sepeteAt").click(function myfunction() {
+            var uid = $(this).attr("name");           
+            $.ajax({
+                type: "GET",
+                url: "/Home/SepeteEkle",
+                data: { id: uid },
+                success: function myfunction() {
+                   
+                    $.ajax({
+                        type: "GET",
+                        url: "/Home/MiniSepetWidget",                       
+                        success: function VeriGetir(veri) {
+                            $(".mini-cart-wrap").html('');
+                            $(".mini-cart-wrap").html(veri);
+                        },
+                        error: function myfunction() {
+                            alert("hata");
+                        }
+
+                        
+                    });
+                },
+                error: function myfunction() {
+                    alert("Ürün sepete eklenirken bir hata oluştu");
+                }
+            });
+        })
+    });
+</script>
+
+<div class="product-section section mb-60">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 mb-40">
+                <div class="section-title-one" data-title="BEST SELLER"><h1>BEST SELLERS</h1></div>
+            </div>
+            <div class="col-12">
+                <div class="row">
+                    
+                    @foreach (var urun in Model)
+                    {
+                        <div class="col-xl-3 col-lg-4 col-md-6 col-12 pb-30 pt-10">
+                            <div class="ee-product">                            
+                                <div class="image">
+                                    <a href="single-product.html" class="img">
+                                        @if (urun.Resim.Count > 0)
+                                        {
+                                            <img src="@urun.Resim.FirstOrDefault(x => x.Varsayilan==false).OrtaYol" alt="Product Image">
+                                        }
+                                    </a>                                    
+                                    <a name="@urun.ID" class="sepeteAt"><i class="ti-shopping-cart"></i><span>Sepete Ekle</span></a>
+                                </div>                             
+                                <div class="content">
+                                    <div class="category-title">
+                                        <a href="/Home/UrunDetay/" class="cat">@urun.Kategoriler.Adi</a>
+                                        <h5 class="title"><a href="/Home/UrunDetay/@urun.Adi">@urun.Adi</a></h5>
+                                    </div>
+                                    <div class="price-ratting">
+                                        <h5 class="price">@urun.SatisFiyati</h5>
+                                    </div>
+                                </div>
+                             </div>
+                    </div>                      
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

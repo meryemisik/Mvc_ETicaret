@@ -1,0 +1,29 @@
+﻿@model IEnumerable<ProjeYonetimiOdev.Models.Kategoriler>
+
+<div class="header-category-section">
+    <div class="container">
+        <div class="row">
+            
+                <div class="col">
+                    <div class="header-category">
+                        <div class="category-toggle-wrap d-block d-lg-none">
+                            <button class="category-toggle">KATEGORİLER <i class="ti-menu"></i></button>
+                        </div>
+                        <nav class="category-menu" style="display: none;">
+                            <ul>
+                                @foreach (var item in Model)
+                                {
+                                    <li><a href="#">@item.Adi</a></li>
+                                }
+                                </ul>
+                        </nav>
+
+                    </div>
+
+                </div>
+           
+
+        </div>
+    </div>
+</div>
+

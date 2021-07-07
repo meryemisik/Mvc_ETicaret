@@ -1,0 +1,66 @@
+﻿
+@{
+    ViewBag.Title = "UrunOzellik";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+@model IEnumerable<ProjeYonetimiOdev.Models.UrunDetay>
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body style="margin:8px;">
+
+    <a href="/Admin/UrunOzellikEkle"><button type="button" class="btn bg-cyan" style="margin:5px 5px 5px 0px;">ÜRÜN ÖZELLİK EKLE</button></a>
+    <table class="table table-hover">
+        <thead class="bg-cyan">
+            <tr>
+                <th scope="col">Ürün Adı</th>
+                <th scope="col">Özellik Tip Adı</th>
+                <th scope="col">Özellik Değer Adı</th>
+                <th scope="col">Sil</th>
+                <th scope="col">Güncelle</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var ozellik in Model)
+            {
+
+
+            <tr>
+                @if (ozellik.Urun != null)
+                {
+                    <td>@ozellik.Urun.Adi</td>
+                }
+
+                @if (ozellik.Ozellikler != null)
+                {
+                    <td>@ozellik.Ozellikler.Adi</td>
+                }
+
+                @if (ozellik.OzellikDetay != null)
+                {
+                    <td>@ozellik.OzellikDetay.Adi</td>
+                }
+                @if (ozellik.Urun != null && ozellik.Ozellikler != null && ozellik.OzellikDetay != null)
+                {
+                    <td>
+                        <a href="@Url.Action("UrunOzellikSil","Admin",new {urunId=@ozellik.UrunID,tipId=@ozellik.OzelliklerID, degerId=@ozellik.OzellikDetayID})" style="color:red;"><i class="fas fa-trash-alt"></i></a>
+                    </td>
+                }
+
+                <td>
+                    <!--güncelleme-->
+                    <a href="#" color:#17a2b8;"><i class="fas fa-edit"></i></a>
+                </td>
+            </tr>
+            }
+
+
+        </tbody>
+    </table>
+</body>
+</html>
+
+
+

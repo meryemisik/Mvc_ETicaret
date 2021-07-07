@@ -1,0 +1,18 @@
+﻿@model IEnumerable<ProjeYonetimiOdev.Models.Markalar>
+<div class="brands-section section mb-90">
+    <div class="container">
+        <div class="row">
+            <div>
+                <h3>MARKALAR</h3>
+            </div>
+            <div class="brand-slider col">
+                @foreach (var marka in Model)
+                {
+                    <div class="brand-item col"><img src="@marka.Resim.OrtaYol"></div>
+                }
+
+            </div><!-- Brand Slider End -->
+
+        </div>
+    </div>
+</div>
